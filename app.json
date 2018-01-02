@@ -1,0 +1,15 @@
+{
+    "expo": {
+        "name": "Goby Sound Board",
+        "icon": "./native/pictures/trash-icon.png",
+        "version": "1.0.0",
+        "slug": "goby-sound-board",
+        "sdkVersion": "23.0.0",
+        "ios": {
+          "bundleIdentifier": "com.twodiscs.gobysoundboard"
+        },
+        "android": {
+          "package": "com.twodiscs.gobysoundboard"
+        }
+    }
+}
