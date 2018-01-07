@@ -5,12 +5,29 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Audio } from 'expo';
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            picNum: Math.floor(Math.random() * 3),
+            soundObject: new Expo.Audio.Sound()
+        };
+
+        // Toggle the state every second
+        setInterval(() => {
+          this.setState(previousState => {
+              let newPicNum = previousState.picNum;
+              while (previousState.picNum === newPicNum) {
+                  newPicNum = Math.floor(Math.random() * 3);
+              }
+            return { picNum: newPicNum, soundObject: previousState.soundObject };
+          });
+        }, 10000);
+    }
 
   render() {
-    const soundObject = new Expo.Audio.Sound();
     return (
       <View style={styles.container}>
-        <Slide num={Math.floor(Math.random() * 3)} />
+        <Slide num={this.state.picNum} />
         <View style={styles.buttons}>
             <FlatList
                 data={[
@@ -31,7 +48,7 @@ export default class App extends React.Component {
                     {key: 'Cantina Song - Star Wars',           sound: require('./native/sounds/star_wars-cantina_song.mp3')},
                     {key: 'Stop',                               sound: 'stop'}
                 ]}
-                renderItem={({item}) => <SoundButton soundObject={soundObject} title={item.key} sound={item.sound}/>}
+                renderItem={({item}) => <SoundButton soundObject={this.state.soundObject} title={item.key} sound={item.sound}/>}
             />
         </View>
       </View>
