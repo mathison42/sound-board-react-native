@@ -8,20 +8,25 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            picNum: Math.floor(Math.random() * 3),
+            picNum: Math.floor(Math.random() * 10),
             soundObject: new Expo.Audio.Sound()
         };
 
         // Toggle the state every second
         setInterval(() => {
-          this.setState(previousState => {
-              let newPicNum = previousState.picNum;
-              while (previousState.picNum === newPicNum) {
-                  newPicNum = Math.floor(Math.random() * 3);
-              }
-            return { picNum: newPicNum, soundObject: previousState.soundObject };
-          });
+            this.setNewPicture();
         }, 10000);
+    }
+
+
+    setNewPicture() {
+        this.setState(previousState => {
+            let newPicNum = previousState.picNum;
+            while (previousState.picNum === newPicNum) {
+                newPicNum = Math.floor(Math.random() * 10);
+            }
+            return { picNum: newPicNum, soundObject: previousState.soundObject };
+        });
     }
 
   render() {
