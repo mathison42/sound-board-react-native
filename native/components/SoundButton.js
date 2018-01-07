@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, Alert } from 'react-native';
+import { Button, Alert, View } from 'react-native';
 import { Audio } from 'expo';
 
 
 const SoundButton = ({soundObject, sound, title}) => {
-    return <Button
-              onPress={async () => {
+    return <View style={{ padding: 8 }} >
+              <Button
+                onPress={async () => {
                   try {
                     var playbackStatus = await soundObject.getStatusAsync()
                     if (playbackStatus.isLoaded) {
@@ -24,6 +25,7 @@ const SoundButton = ({soundObject, sound, title}) => {
               }}
               title={title}
             />
+          </View>
 }
 
 export default SoundButton;
