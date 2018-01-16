@@ -3,9 +3,10 @@ import { Button, Alert, View } from 'react-native';
 import { Audio } from 'expo';
 
 
-const SoundButton = ({soundObject, sound, title}) => {
+const SoundButton = ({soundObject, sound, title, color}) => {
     return <View style={{ padding: 8 }} >
               <Button
+                color={color}
                 onPress={async () => {
                   try {
                     var playbackStatus = await soundObject.getStatusAsync()
